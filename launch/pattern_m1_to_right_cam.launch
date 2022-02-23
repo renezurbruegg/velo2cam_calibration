@@ -1,0 +1,18 @@
+<launch>
+  <include file="$(find velo2cam_calibration)/launch/lidar_pattern.launch">
+      <arg name="cloud_topic" default="/rsm1_lidar_points" />
+      <arg name="sensor_id" default="0" />
+  </include>
+
+  <include file="$(find velo2cam_calibration)/launch/mono_pattern.launch">
+      <arg name="camera_name" default="/camera_array/cam0" />
+      <arg name="image_topic" default="image_raw" />
+      <arg name="frame_name" default="cam_0_optical_frame" />
+      <arg name="sensor_id" default="0" />
+  </include>
+
+<node type="rviz" name="rviz" pkg="rviz" args="-d $(find velo2cam_calibration)/rviz/check_calibration.rviz" />
+
+
+
+</launch>
