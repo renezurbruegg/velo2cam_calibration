@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(velo2cam_calibration)
 
+find_package (OpenCV 4.5 REQUIRED )
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOUIC ON)
+
+include_directories(${OpenCV_INCLUDE_DIRS})
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -w ")
 
 ## Find catkin macros and libraries
@@ -21,7 +26,6 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(TinyXML REQUIRED)
-find_package(OpenCV REQUIRED)
 
 generate_dynamic_reconfigure_options(
   cfg/Lidar.cfg
@@ -61,6 +65,7 @@ include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   ${OpenCV_LIBRARIES}
+  ${OpenCV_LIBS}
   ${TinyXML_INCLUDE_DIRS}
 )
 
@@ -113,6 +118,7 @@ target_link_libraries(lidar_pattern
 target_link_libraries(mono_qr_pattern
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES}
+  ${OpenCV_LIBS}
 )
 target_link_libraries(velo2cam_calibration
   ${catkin_LIBRARIES}
@@ -125,4 +131,5 @@ target_link_libraries(v2c_plane_segmentation
 target_link_libraries(v2c_disp_masker
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES}
+  ${OpenCV_LIBS}
 )

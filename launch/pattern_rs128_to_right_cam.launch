@@ -1,11 +1,11 @@
 <launch>
   <include file="$(find velo2cam_calibration)/launch/lidar_pattern.launch">
-    <arg name="cloud_topic" default="/rsm1_lidar_points" />
+    <arg name="cloud_topic" default="/rs128_lidar_points" />
     <arg name="sensor_id" default="0" />
   </include>
 
   <include file="$(find velo2cam_calibration)/launch/mono_pattern.launch">
-    <arg name="camera_name" default="/camera_array/front_right_cam" />
+    <arg name="camera_name" default="/camera_array/right_cam" />
     <arg name="image_topic" default="image_raw" />
     <arg name="frame_name" default="cam_0_optical_frame" />
     <arg name="sensor_id" default="0" />

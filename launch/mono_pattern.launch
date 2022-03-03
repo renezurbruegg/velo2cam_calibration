@@ -1,28 +1,28 @@
 <launch>
 
     <arg name="stdout" default="screen" />
-    <arg name="camera_name" default="/camera_array/cam0" />
+    <arg name="camera_name" default="/camera_array/front_right_cam" />
     <arg name="image_topic" default="image_raw" />
     <arg name="frame_name" default="cam_0_optical_frame" />
     <arg name="sensor_id" default="0" />
 
     <!-- Marker size (side) in meters -->
-    <arg name="marker_size" value="0.175"/>
+    <arg name="marker_size" value="0.175" />
 
     <node pkg="velo2cam_calibration" type="mono_qr_pattern" name="mono_pattern_$(arg sensor_id)" output="$(arg stdout)">
         <param name="image_topic" value="$(arg camera_name)/$(arg image_topic)" />
         <param name="cinfo_topic" value="$(arg camera_name)/camera_info" />
-        <param name="marker_size" value="$(arg marker_size)"/>
+        <param name="marker_size" value="$(arg marker_size)" />
 
 
-        <param name="delta_width_circles" value="0.35"/>
-        <param name="delta_height_circles" value="0.3"/>
+        <param name="delta_width_circles" value="0.35" />
+        <param name="delta_height_circles" value="0.3" />
 
-        <param name="delta_width_qr_center" value="0.4475"/>
-        <param name="delta_height_qr_center" value="0.15"/>
-        <param name="min_detected_markers" value="3"/>
+        <param name="delta_width_qr_center" value="0.4475" />
+        <param name="delta_height_qr_center" value="0.15" />
+        <param name="min_detected_markers" value="3" />
 
     </node>
 
-    <node pkg="tf" type="static_transform_publisher" name="camera_ros_tf_$(arg sensor_id)" args="0 0 0 -1.57079632679 0 -1.57079632679 rotated_$(arg frame_name) $(arg frame_name) 10"/>
+    <node pkg="tf" type="static_transform_publisher" name="camera_ros_tf_$(arg sensor_id)" args="0 0 0 -1.57079632679 0 -1.57079632679 rotated_$(arg frame_name) $(arg frame_name) 10" />
 </launch>
